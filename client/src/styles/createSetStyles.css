@@ -1,0 +1,336 @@
+*{
+  font-family: arial;
+}
+.createSetForm{
+  z-index: 3;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  padding: 0 5rem;
+}
+
+.groupCreateBtn{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.saveBtn{
+  display: flex;
+  justify-content: end;
+}
+
+.backBtn, .createSetBackBtn{
+  position: relative;
+  margin-left:20px;
+  width: 5rem;
+  height: 2.5rem;
+  font-size: 100%;
+  background: none;
+  border: none;
+  color: #209ffa;
+  padding: 0;
+}
+
+.backBtn{
+  top: 6.3rem; 
+}
+
+.createSetBackBtn:hover{
+  color: white;
+  transform: scale(1.2);
+}
+
+.createSet-bar{
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  top: 0;
+  left: 0;
+  background-color: #16213E;
+  z-index: 1;
+  box-shadow: 0px 0.0025px 1px white;
+}
+
+.createNewSetBtn{
+  width: 6rem;
+  height: 3.5rem;
+  background-color: #209ffa;
+  color: white;
+  border: none;
+  margin-right: 30px;
+  border-radius: 10px;
+  font-family: arial;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: filter 0.3s, transform 0.3s;
+
+}
+
+.createNewSetBtn:hover{
+  filter: brightness(85%);
+  transform: scale(1.1);
+}
+
+.titleLabel, .descriptionLabel{
+  color: rgba(255,255,255,0.75);
+  font-size: .85rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.titleLabel{
+  top: 9.7rem;
+  margin-left: 0.5rem;
+}
+
+.descriptionLabel{
+  top: 11rem;
+  margin-left: 0.5rem;
+}
+.createSet-title, .createSet-description{
+  outline: none;
+  font-size: 1.1rem;;
+  background-color: rgba(255,255,255,0.2);
+  color: white;
+  border-radius: 10px;
+  border: none;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-weight: bold;
+  position: relative;
+  top: 10rem;
+  width: 100%;
+}
+
+.createSet-title::placeholder, .createSet-description::placeholder{
+  color: rgba(255,255,255,0.75);
+  font-family: arial;
+  font-size: .95rem;
+ 
+
+}
+
+.createSet-title:focus, .createSet-description:focus,.card-input:focus{
+  border-bottom:#209ffa 5px solid;
+
+}
+
+.createSet-title{
+  height: 45px;
+  margin-bottom: 2rem;
+  
+}
+
+.createSet-description{
+  resize: none;
+  min-height: 100px;
+  height: auto;
+  overflow: hidden;
+  padding: 1rem;
+  margin-top: 1.4rem;
+}
+
+/*CreateCards Styling*/
+
+.studyCardsContainer{
+  position: relative;
+  top: 11rem;
+}
+.study-card{
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  min-height:200px;
+  height: auto;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255,255,255,0.2);
+  
+}
+
+.card-input{
+  box-sizing: border-box;
+  resize: none;
+  margin: 25px auto;
+  width: 100%;
+  font-size: 1rem;
+  height: 1.7rem;
+ overflow: hidden;
+ background: none;
+ border: none;
+ border-bottom: white 2px solid;
+ outline: none;
+ color: white;
+ font-family: arial;
+ font-weight: bold;
+
+}
+
+.number-options{
+  border: none;
+  border-bottom:#16213E 3px solid;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.term-definition{
+  border: none;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: auto;
+  justify-content: space-around;
+  padding: 20px 0;
+  align-items: top;
+}
+
+
+.term-div, .definition-div{
+  border: none;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 45%;
+
+}
+
+.term-definition > div > label{
+  color: rgba(255,255,255,0.75);
+  margin-top: -20px;
+  margin-left: 5px;
+  font-size: .85rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+
+
+}
+
+.cardOption{
+  margin-right: 15px;
+  border: none;
+  background: none;
+  color: white;
+  font-size: 1rem;
+  transition: transform 0.3s,  color 0.3s;
+}
+
+.cardOption:hover{
+ transform: scale(1.2);
+ color:#209ffa;
+}
+
+.card-number{
+  margin-left: 15px;
+  font-family: arial;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+
+}
+
+.newCard-container{
+    border: none;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+
+.newCardBtn{
+  border: none;
+  background-color: #209ffa;
+  border-radius: 10px;
+  width: 250px;
+  height: 4rem;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: transform 0.3s;
+  position: relative;
+  top: 13rem;
+  align-self: center;
+  margin-bottom: 15rem;
+}
+
+.newCardBtn:hover{
+  transform: scale(1.1);
+  filter: brightness(85%)
+}
+
+
+
+.studyCardList{
+  padding: 0;
+}
+
+.card-input::placeholder{
+  color: rgba(255,255,255,0.85);
+  font-family: sans-serif;
+  font-weight: normal;
+
+}
+
+@media screen and (max-width: 750px){
+
+  .createSetForm{
+    padding: 2rem;
+  }
+  .term-definition{
+    flex-direction: column;
+  }
+
+  .term-div, .definition-div{
+      width: 92%;
+      margin-left: 20px;
+      
+  }
+}
+
+/*card ANIMATIONS*/
+.cardTransition{
+  animation: addCardAnimate 0.5s;
+}
+
+@keyframes addCardAnimate {
+
+  0%{
+      transform: translateY(-30%) scale(0.85);
+      opacity: 0;
+  }
+  100%{
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  
+}
+
+.deleteCardAnimation{
+  animation: deleteCardAnimate 0.5s;
+}
+
+@keyframes deleteCardAnimate {
+
+  0%{
+      transform: scale(1);
+      opacity: 1;
+  }
+  100%{
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+
+

@@ -1,0 +1,129 @@
+*{
+  font-family: arial;
+}
+
+.intro-div{
+ 
+ width: 50%
+}
+
+.login-div{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 10px white;
+  border-radius: 10px;
+  padding: 1rem 4rem 2rem 4rem;
+  position: relative;
+  top: 3.5rem;
+  background-color: #112d52;
+  
+}
+
+.login-header{
+ color: white; 
+ font-size: 1.5rem;
+ margin-bottom: 4rem;
+ text-align: center;
+}
+
+.login-label{
+  color:white;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+  
+}
+
+.password-div{
+ 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forget-pass-link{
+  color: #21b7fc;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.forget-pass-link:hover{
+  transform: scale(1.1);
+  color: white;
+}
+
+.signin-input{
+  margin-bottom: 2rem;
+  border-radius: 5px;
+  border: #6d819c 2px solid;
+  padding: .45rem 1rem;
+  background-color: #6d819c;
+  font-size: 1rem;
+  color: white;
+}
+
+.signin-input:focus{
+  outline: none;
+  border:#21b7fc 2px solid;
+}
+
+.submit-btn{
+  border-radius: 5px;
+  padding: 0.75rem 0 ;
+  font-weight: bold;
+  color: white;
+  background-color: #21b7fc;
+  border: none;
+  transition: color 0.3s, background-color 0.3s, transform 0.3s;
+
+}
+.submit-btn:hover{
+  color:#21b7fc;
+  background-color: white;
+  transform: scale(1.1) ;
+}
+
+.intro-title, .intro-welcome{
+  color: white;
+}
+.intro-title{
+  color: white;
+  font-size: 2.1rem;
+}
+
+.intro-welcome{
+  color: #959dab;
+  font-size: 1.3rem;
+  letter-spacing: 1.5px;
+  line-height: 2rem;
+}
+
+.errorMessage{
+  margin-top: 1rem;
+  padding: 1rem 1rem;
+  border: red 2px solid;
+  color:  #e01010;
+  text-align: center;
+  background-color: #eb8a8a;
+  font-weight: bold;
+  width: 15rem;
+}
+@media screen and (max-width: 720px){
+  .intro-div{
+    margin-top: 7rem;
+    width: 85%;
+  }
+
+}
