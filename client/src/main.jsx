@@ -7,23 +7,25 @@ import { ResetContextProvider } from './context/ResetContext.jsx'
 import { CreateSetContextProvider } from './context/CreateSetContext.jsx'
 import { StudySetsProvider } from './context/StudySetsContext.jsx'
 import { StudyOptionsProvider } from './context/StudyOptionsContext.jsx'
-
+import { ErrorContextProvider } from './context/ErrorContext.jsx'
 
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 
   <React.StrictMode>
-    <ResetContextProvider>
-      <AuthContextProvider>
-      <CreateSetContextProvider>
-        <StudySetsProvider>
-          <StudyOptionsProvider> 
-            <App />
-          </StudyOptionsProvider>
-        </StudySetsProvider>
-      </CreateSetContextProvider>
-      </AuthContextProvider>
-    </ResetContextProvider> 
+    <ErrorContextProvider>
+      <ResetContextProvider>
+        <AuthContextProvider>
+        <CreateSetContextProvider>
+          <StudySetsProvider>
+            <StudyOptionsProvider> 
+              <App />
+            </StudyOptionsProvider>
+          </StudySetsProvider>
+        </CreateSetContextProvider>
+        </AuthContextProvider>
+      </ResetContextProvider> 
+    </ErrorContextProvider>
   </React.StrictMode>,
 )

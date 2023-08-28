@@ -29,7 +29,7 @@ const NavBar = () =>{
   const [notifyBtn, setNotifyBtn] = useState(false)
   const [createBtn, setCreateBtn] = useState(false)
   const navigate = useNavigate()
-  const {dispatch: cardDispatch} = useStudyOptionsContext()
+  const {dispatch: cardDispatch, cardSelect} = useStudyOptionsContext()
 
   const handleClick = () =>{
     setSettingBtn(false)
@@ -106,6 +106,12 @@ const NavBar = () =>{
     const handleRemove = () =>{
       cardDispatch({type:'CARD_TYPE',payload: null})
     }
+
+    useEffect(()=>{
+      if(!cardSelect){
+        navigate('/home')
+      }
+    },[cardSelect])
   return(
     <header>
         <div className="nav-bar">
@@ -114,9 +120,8 @@ const NavBar = () =>{
               <FontAwesomeIcon className="logo-brain" icon={faBrain}/>
               <FontAwesomeIcon className="logo-lightning" icon={faBoltLightning}/>
             </div>
-              {user ? <Link className='brand-title' to='/home'>
-                <h1 onClick={handleRemove}>BrainBooster</h1>
-              </Link> : <h1 className='brand-title'>BrainBooster</h1>}
+              {user ? <h1 className='brand-title' onClick={handleRemove}>BrainBooster</h1>
+              : <h1 className='brand-title'>BrainBooster</h1>}
           </div>
           
           <nav className='nav-div'>

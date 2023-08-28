@@ -279,7 +279,7 @@
   
 }
 .selected{
-  animation: changeOpacity 1s;
+  animation: changeOpacity .5s;
 }
 
 

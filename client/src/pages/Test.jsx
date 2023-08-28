@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { useNavigate} from 'react-router-dom'
 
 import MultipleChoice from "../components/MultipleChoice"
 import { useStudyOptionsContext } from '../hooks/useStudyOptionsContext'

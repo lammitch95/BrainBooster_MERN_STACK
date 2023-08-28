@@ -5,7 +5,6 @@ import { useAuthContext } from './hooks/useAuthContext.jsx'
 import { useResetContext } from './hooks/useResetContext.jsx'
 import { useCreateSetContext } from './hooks/useCreateSetContext.jsx'
 import { useStudyOptionsContext } from './hooks/useStudyOptionsContext.jsx'
-import { useStudySetsContext } from './hooks/useStudySetsContext.jsx'
 
 import Home from './pages/Home.jsx'
 import NavBar from './components/NavBar.jsx'
@@ -18,6 +17,7 @@ import Test from './pages/Test.jsx'
 import FlashCards from './pages/FlashCards.jsx'
 import NoPage from './pages/NoPage.jsx'
 import Edit from './pages/Edit.jsx'
+import ErrorMessage from './components/ErrorMessage.jsx'
 
 import './styles/index.css'
 
@@ -33,6 +33,7 @@ function App() {
     
     <div className='App'>
       <BrowserRouter>
+          <ErrorMessage/>
           <NavBar/>
           <div className='pages'>
             <Routes>

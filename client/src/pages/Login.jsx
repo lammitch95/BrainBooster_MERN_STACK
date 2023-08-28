@@ -1,19 +1,27 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useLogin } from "../hooks/useLogin"
 import { Link } from "react-router-dom"
 import '../styles/loginStyles.css'
+import { useErrorContext } from "../hooks/useErrorContext"
 
 const Login = () =>{
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const {login, isLoading, error} = useLogin()
+  const {dispatch} = useErrorContext()
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
 
     await login(email,password)
   }
+
+  useEffect(()=>{
+    if(error){
+      dispatch({type:'SET_ERROR', payload: error})
+    }
+  },[error])
 
   return(
     <div className="login-div">
@@ -32,7 +40,7 @@ const Login = () =>{
         <input className='signin-input' type="password" onChange={(e) => setPassword(e.target.value)} value={password}/>
         
         <button className='submit-btn' disabled={isLoading}>Log In</button>
-        {error && <div className="errorMessage">{error}...</div>}
+       
       </form>
     </div>
   )

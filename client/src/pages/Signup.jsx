@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSignup } from "../hooks/useSignup"
-
+import { useErrorContext } from "../hooks/useErrorContext"
 import '../styles/loginStyles.css'
 
 const Signup = () =>{
@@ -8,12 +8,19 @@ const Signup = () =>{
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { signup, isLoading, error} = useSignup()
+  const {dispatch} = useErrorContext()
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
 
     await signup(email,password)
   }
+
+  useEffect(()=>{
+    if(error){
+      dispatch({type: 'SET_ERROR', payload: error})
+    }
+  },[error])
 
   return(
     <div className='login-div'>
@@ -26,7 +33,7 @@ const Signup = () =>{
         </div>
         <input className='signin-input' type="password" onChange={(e) => setPassword(e.target.value)} value={password}/>
         <button className='submit-btn' disabled={isLoading}>Log In</button>
-        {error && <div className="errorMessage">{error}...</div>}
+      
       </form>
     </div>
   )
