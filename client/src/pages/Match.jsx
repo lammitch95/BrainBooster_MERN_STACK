@@ -120,14 +120,7 @@ const Match = () =>{
 
   },[correctCounter,isMatch])
 
-  const matchCardStyles = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-    gridGap: '10px',
-    height: '25rem',
-    width: '100%',
-    justifyContent: 'center'
-  }
+ 
 
   const handlePlayAgain = () =>{
 
@@ -150,7 +143,7 @@ const Match = () =>{
          <button className='playAgainBtn' onClick={handlePlayAgain} >{start ? 'Start' : 'Play Again?'}</button>
        </div>
       ):(
-        <div className='matchDiv' style={matchCardStyles}>
+        <div className='matchDiv'>
         {isMatch && isMatch.map((item,index)=>(
           <MatchCardComponent key={index} info={item} handleSelected={handleSelected} isSelected={(firstChoice && item.show === firstChoice.show) || (secondChoice && item.show === secondChoice.show)} isCorrect={isCorrect} isWrong={isWrong}/>
         ))}

@@ -26,7 +26,10 @@
   display: flex;
   overflow: hidden;
   height: 22rem;
+  
 }
+
+
 
 .emptySets{
   border: white dashed 2px;
@@ -222,33 +225,33 @@
 
 
 .pageNumDiv{
-  margin-top: 1.5rem;
   width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding-right: 1rem;
-
+  padding-top: 1.5rem;
+  
+ 
 }
 
-.leftArrow, .rightArrow{
+.leftArrowHome, .rightArrowHome{
   color: #21b7fc;
   font-size: 1rem;
   margin-left: 1.5rem;
   transition: color 0.3s, transform 0.3s;
 }
 
-.leftArrow:hover ,.rightArrow:hover{
+.leftArrowHome:hover ,.rightArrowHome:hover{
   color: white;
   transform: scale(1.2);
 }
 
 .pageNum{
-  margin-top: 5.5rem;
+  margin-left: 1.5rem;
   color:white;
   font-size: 1rem;
   font-weight: bold;
-
 
 }
 
@@ -270,6 +273,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+ 
+  top: 0;
 }
 
 @keyframes changeOpacity {

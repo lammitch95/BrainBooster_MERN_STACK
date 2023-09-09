@@ -120,9 +120,9 @@ const Home = () =>{
         <div className="emptySets">Recents is empty...</div>
       )}
       <section className='pageNumDiv'>
-        <FontAwesomeIcon onClick={()=>{handlePageTurn('left')}} className='leftArrow' icon={faLessThan}/>
+        <FontAwesomeIcon onClick={()=>{handlePageTurn('left')}} className='leftArrowHome' icon={faLessThan}/>
         <label className="pageNum">{pageCount} / {pagesArr.length}</label>
-        <FontAwesomeIcon onClick={()=>{handlePageTurn('right')}} className='rightArrow' icon={faGreaterThan}/>
+        <FontAwesomeIcon onClick={()=>{handlePageTurn('right')}} className='rightArrowHome' icon={faGreaterThan}/>
       </section>
     </main>
     </>
