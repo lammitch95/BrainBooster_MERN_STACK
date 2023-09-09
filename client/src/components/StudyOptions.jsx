@@ -17,27 +17,18 @@ const StudyOptions = ({card, handleBack, isMenu}) =>{
 
   const handleSelectOptions = (choice) =>{
 
-    
-
+    if(cardSelect){
       switch(choice){
 
         case 'flashcards':
-          if(cardSelect){
             navigate(`/flashcards/${cardSelect._id}`)
-          }
-          break
-
+            break
         case 'test':
-          if(cardSelect){
             navigate(`/test/${cardSelect._id}`)
-          }
-          break
-
+            break
         case 'match':
-          console.log('MATCH COMING SOON')
-        
-          break
-
+            navigate(`/match/${cardSelect._id}`)
+            break
         case 'word search':
           console.log('CROSS WORD SEARCH COMING SOON')
        
@@ -50,16 +41,21 @@ const StudyOptions = ({card, handleBack, isMenu}) =>{
         default:
           console.log('Study Option does not exist')
           break
-
       }
+
+    }
+
+      
+
   }
+  
   
   return(
     <div className={`studyOptionsDiv ${card && !isMenu ? 'selected': ''}`}>
       <div className="studyOptionsFlex">
         <button onClick={()=>{handleSelectOptions('flashcards')}} className="optionBtn studyFlashBtn">Flashcards</button>
         <button  onClick={()=>{handleSelectOptions('test')}} className="optionBtn studyExamsBtn">Test</button>
-        <button  onClick={()=>{handleSelectOptions('match')}} className="optionBtn studyMatch">Match Coming Soon</button>
+        <button  onClick={()=>{handleSelectOptions('match')}} className="optionBtn studyMatch">Match</button>
         <button  onClick={()=>{handleSelectOptions('wordsearch')}} className="optionBtn studyWordSearch">Word Search Coming Soon</button>
         <button  onClick={()=>{handleSelectOptions('cross words')}} className="optionBtn studyCrossWord">Cross Words Coming Soon</button>
         <button onClick={handleBack} className="optionBtn studyBackBtn">Back</button>

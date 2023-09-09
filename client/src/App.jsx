@@ -18,6 +18,7 @@ import FlashCards from './pages/FlashCards.jsx'
 import NoPage from './pages/NoPage.jsx'
 import Edit from './pages/Edit.jsx'
 import ErrorMessage from './components/ErrorMessage.jsx'
+import Match from './pages/Match.jsx'
 
 import './styles/index.css'
 
@@ -46,8 +47,9 @@ function App() {
               <Route path="/create-set" element={user && create ? <Create/>: <Navigate to="/home"/>}/>
               <Route path="/test/:id" element={user && cardSelect ? <Test/> : <Navigate to='/home'/>} />
               <Route path="/flashcards/:id" element={user && cardSelect ? <FlashCards/> : <Navigate to='/home'/>}/>
+              <Route path="/match/:id" element={user && cardSelect ? <Match/> : <Navigate to='/home'/> } />
               <Route path="/edit/:id" element={user && editStatus ? <Edit/> : <Navigate to='/home'/> } />
-
+             
               <Route path="*" element={<NoPage/>}/>
             </Routes>
           </div>

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useResetContext } from "../hooks/useResetContext"
 import '../styles/ForgotResetStyles.css'
+import { useErrorContext } from "../hooks/useErrorContext"
 
 
 const ResetPassword = () =>{
@@ -8,7 +9,7 @@ const ResetPassword = () =>{
   const[newPassword,setNewPassword] = useState('')
   const[reenterPass,setReenterPass] = useState('')
   const {email, dispatch} = useResetContext()
- 
+ const{dispatch: errorDispatch} = useErrorContext()
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
@@ -26,6 +27,7 @@ const ResetPassword = () =>{
 
       if(!response.ok){
         console.log(data.error)
+        errorDispatch({type: 'SET_ERROR', payload: data.error})
       }
 
       if(response.ok){
@@ -38,6 +40,7 @@ const ResetPassword = () =>{
       
     
     }else{
+      errorDispatch({type: 'SET_ERROR', payload: 'Re-entered password doesnt match with new password'})
       console.log('Re-entered password doesnt match with new password')
     }
   }

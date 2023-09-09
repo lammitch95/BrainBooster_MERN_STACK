@@ -3,6 +3,7 @@ import { useCreateSetContext } from "../hooks/useCreateSetContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import CreatSetCard from '../components/CreateSetCard'
 import { useNavigate } from "react-router-dom";
+import { useErrorContext } from "../hooks/useErrorContext";
 
 
 import '../styles/createSetStyles.css'
@@ -16,6 +17,7 @@ const CreateSetForm = () =>{
 
     const {dispatch, create, cardArr} = useCreateSetContext()
     const {user} = useAuthContext()
+    const {dispatch: errorDispatch} = useErrorContext()
 
     const navigate = useNavigate()
 
@@ -55,14 +57,44 @@ const CreateSetForm = () =>{
       dispatch({type: 'DEACTIVATE_CREATE', payload: false})
     }
 
+    const handleDuplicate = (array) => {
+      const handleTerm= new Set()
+      const handleDef= new Set()
+      
+
+      for(let item of array){
+        if(handleTerm.has(item.cardTerm) || handleTerm.has(item.cardDefinition) || handleDef.has(item.cardTerm) || handleDef.has(item.cardDefinition)){
+          return true
+        }
+
+        handleTerm.add(item.cardTerm)
+        handleDef.add(item.cardDefinition)
+      }
+
+      return false
+    }
+
     const handleSubmitForm =  async(e) =>{
       e.preventDefault()
       console.log('handleSubmit Form called')
       
       if(!user){
-        setError('Must Be Logged In to access this page... ')
+        errorDispatch({type: 'SET_ERROR', payload: 'Must Be Logged In to access this page'})
         return
       }
+
+      const checkForDup = handleDuplicate(cardArr)
+
+      if(checkForDup){
+        errorDispatch({type: 'SET_ERROR', payload: 'There are duplicate values in your study set'})
+        return
+      }
+   
+      if(cardArr.length < 5){
+        errorDispatch({type: 'SET_ERROR', payload: 'Create Study Set minimum length of 5 not met'})
+        return
+      }
+
 
       const updatedCardArr = cardArr.map((card) => ({
         term: card.cardTerm,
@@ -101,6 +133,8 @@ const CreateSetForm = () =>{
         navigate('/home')
       }
     },[create])
+
+  
      
   return(
     

@@ -18,9 +18,11 @@ const Login = () =>{
   }
 
   useEffect(()=>{
+    
     if(error){
       dispatch({type:'SET_ERROR', payload: error})
     }
+    
   },[error])
 
   return(

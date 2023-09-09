@@ -9,11 +9,12 @@ const ErrorMessage = () =>{
   const {error,dispatch} = useErrorContext()
 
   useEffect(()=>{
-
+    console.log('ERROR MESSAGE FILE ERROR: ', error)
     if(error){
       setTimeout(()=>{
         dispatch({type: 'SET_ERROR', payload: null})
-      },2000)
+        
+      },1000)
     }
   },[error])
 

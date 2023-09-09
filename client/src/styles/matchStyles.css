@@ -1,0 +1,107 @@
+*{
+  box-sizing: border-box;
+  font-family: arial;
+}
+.matchPage{
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.matchDiv{
+
+  margin-top: 3rem;
+ 
+ 
+}
+
+.cardForMatch{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+  font-size: 75%;
+  height: 7rem;
+  width: 10rem;
+  transition: border 0.3s, transform 0.3s;
+  border: 2px solid transparent;
+}
+
+.cardForMatch:hover{
+  transform: scale(1.2);
+}
+
+.cardSelected{
+  border: white 2px solid;
+}
+
+.isCorrect{
+  background-color: rgb(68, 236, 68);
+  border-color: rgb(68, 236, 68) ;
+  animation: correct 1s;
+  opacity: 0;
+ 
+
+}
+
+.isWrong{
+ background-color: red;
+ border-color: red;
+ animation:  wrong .5s;
+
+}
+
+@keyframes wrong {
+  0%{
+    transform: rotate(-5eg);
+  }
+  25%{
+    transform: rotate(5deg);
+  }
+  50%{
+    transform: rotate(-5deg);
+  }
+  75%{
+    transform: rotate(5deg);
+  }
+  100%{
+    transform: rotate(0deg);
+  }
+}
+
+
+@keyframes correct {
+  0%{
+    opacity: 1;
+  }
+ 50%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  } 
+}
+
+.playAgainBtn{
+  margin-top: 10rem;
+  width: 10rem;
+  height: 5rem;
+  border-radius: 10px;
+  background-color: rgb(23, 185, 255);
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: none;
+  transition: transform 0.3s;
+
+}
+
+.playAgainBtn:hover{
+  transform: scale(1.2);
+}

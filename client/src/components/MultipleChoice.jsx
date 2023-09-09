@@ -4,7 +4,8 @@ import '../styles/testStyles.css'
 
 
 const MultipleChoice = ({card, handleChoiceSelected}) => {
-
+  
+  
 
 
   return(

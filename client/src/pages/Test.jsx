@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react"
 
 import MultipleChoice from "../components/MultipleChoice"
+import TrueAndFalse from '../components/TrueAndFalse'
+
+
+import TestOptions from "../components/testOptions"
+
 import { useStudyOptionsContext } from '../hooks/useStudyOptionsContext'
+import { useTestOptionsContext } from "../hooks/useTestOptionsContext"
+
 import '../styles/testStyles.css'
+
 
 const Test = () =>{
 
@@ -13,11 +21,39 @@ const Test = () =>{
   const [direction, setDirection] = useState(0)
   const [isResult, setIsResult] = useState(false)
   const [score, setScore] = useState(null)
+  const {tF, mC} = useTestOptionsContext()
 
-  
-  
 
+  useEffect(()=>{
+   
+    if(tF){
+      setTestQuestions(generateQuestionsTF(cardSelect.cardArr))
+    }
+
+    if(mC){
+        setTestQuestions(generateQuestionsMC(cardSelect.cardArr))
+    }
+
+  },[tF, mC])
+
+  const shuffle = (array) =>{
+    const shuffledArr = [...array]
+    for(let i = shuffledArr.length-1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1))
+
+      const temp = shuffledArr[i]
+      shuffledArr[i] = shuffledArr[j]
+      shuffledArr[j] = temp
+    }
+
+    return shuffledArr
+
+  }
+
+
+  /***********GENERATING MULTIPLE CHOICE************************************/
     const generateRandomChoices = (array, answer) =>{
+      
         const choicesArr = [answer]
         while(choicesArr.length < 4){
           const randomChoice = array[Math.floor(Math.random()* array.length)]
@@ -29,21 +65,7 @@ const Test = () =>{
         return shuffle(choicesArr)
     }
 
-    const shuffle = (array) =>{
-      const shuffledArr = [...array]
-      for(let i = shuffledArr.length-1; i > 0; i--){
-        const j = Math.floor(Math.random() * (i + 1))
-
-        const temp = shuffledArr[i]
-        shuffledArr[i] = shuffledArr[j]
-        shuffledArr[j] = temp
-      }
-
-      return shuffledArr
-
-    }
-
-    const generateQuestions = (array) => {
+    const generateQuestionsMC = (array) => {
       
       const questions = array.map(item =>{
         const {term, definition} = item
@@ -59,33 +81,51 @@ const Test = () =>{
       return shuffle(questions)
     }
 
-    const handleChoiceSelected = (choice, answer) =>{
-      if(choice === answer){
-        setTotalCorrect(prevCount => prevCount + 1)
+
+   
+
+    /********************************************************************************/
+
+    /**********************TRUE AND FALSE FUNCTION****************************/
+    const generateQuestionsTF = (array) =>{
+
+      const questions = array.map(item =>{
+        const {term, definition} = item
+        const  {questionTF, answerTF} = randomQuestionsTF(item, array)
+        return{
+          question: questionTF,
+          choices: ['true','false'],
+          answer: answerTF
+        }
+      })
+      return shuffle(questions)
+    }
+
+    const randomQuestionsTF = (item, array) => {
+
+      const random = Math.random()
+      let questionTF = null
+      let answerTF = null
+
+      if(random < 0.5){
+        questionTF = `Is...${item.term} ;${item.definition}`
+        answerTF = 'true'
+        
+      }else{
+        let findQuestion = item.term
+       
+        while(findQuestion === item.term){
+          findQuestion = array[Math.floor(Math.random() * array.length)].definition
+        }
+
+        questionTF = `Is...${item.term} ;${findQuestion}`
+        answerTF = 'false'
       }
 
-      if(testQuestions && qCount < testQuestions.length){
-        setDirection(prevDirection => prevDirection - 100)
-        setQCount(prevCount => prevCount + 1)
-      }else{
-        setIsResult(true)
-      }
+      return {questionTF, answerTF}
     }
+    /************************************************/
   
-    useEffect(()=>{
-      if(isResult){
-        const result = (totalCorrect * 100)/ testQuestions.length
-        setScore(result.toFixed(2))
-      }
-    },[isResult,totalCorrect,testQuestions])
-    
-    useEffect(()=>{
-      if(!isResult && qCount === 1 && totalCorrect === 0 && direction === 0){
-        const cardArr = cardSelect.cardArr
-        setTestQuestions(generateQuestions(cardArr))
-      }
-      
-  },[isResult,setQCount,setTotalCorrect,setDirection])
     
   const handleStudyAgain = () =>{
         setIsResult(false)
@@ -94,19 +134,41 @@ const Test = () =>{
         setDirection(0)
   }
 
+  const handleChoiceSelected = (choice, answer) =>{
+    if(choice === answer){
+      setTotalCorrect(prevCount => prevCount + 1)
+    }
+
+    if(testQuestions && qCount < testQuestions.length){
+      setDirection(prevDirection => prevDirection - 100)
+      setQCount(prevCount => prevCount + 1)
+    }else{
+      setIsResult(true)
+    }
+  }
   
+  useEffect(()=>{
+    if(isResult){
+      const result = (totalCorrect * 100)/ testQuestions.length
+      setScore(result.toFixed(2))
+    }
+  },[isResult,totalCorrect,testQuestions])
+
   return(
     <main className="testPage">
-     
-      {!isResult? (
+      <TestOptions/>
+      {!isResult ? (
         <>
            <section className="qCountDiv">
               {testQuestions && <p >Question: {qCount} / {testQuestions.length}</p>}
            </section>
            <section className="qPagesDiv"> 
-            {testQuestions && testQuestions.map((item, index)=>(
+            {(testQuestions && mC) && testQuestions.map((item, index)=>(
               <div key={index} className="qPages" style={{transform: `translateX(${direction}%)`}} ><MultipleChoice  card={item} handleChoiceSelected={handleChoiceSelected}/></div>
-            ))}  
+            ))} 
+            {(testQuestions && tF) && testQuestions.map((item, index) =>(
+              <div key={index} className="qPages" style={{transform: `translateX(${direction}%)`}} ><TrueAndFalse card={item} handleChoiceSelected={handleChoiceSelected}/></div>
+            ))} 
            </section>
            
         </>

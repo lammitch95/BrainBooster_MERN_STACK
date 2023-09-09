@@ -8,6 +8,7 @@ import { CreateSetContextProvider } from './context/CreateSetContext.jsx'
 import { StudySetsProvider } from './context/StudySetsContext.jsx'
 import { StudyOptionsProvider } from './context/StudyOptionsContext.jsx'
 import { ErrorContextProvider } from './context/ErrorContext.jsx'
+import { TestOptionsContextProvider } from './context/TestOptionsContext.jsx'
 
 
 
@@ -17,13 +18,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ErrorContextProvider>
       <ResetContextProvider>
         <AuthContextProvider>
-        <CreateSetContextProvider>
-          <StudySetsProvider>
-            <StudyOptionsProvider> 
-              <App />
-            </StudyOptionsProvider>
-          </StudySetsProvider>
-        </CreateSetContextProvider>
+          <CreateSetContextProvider>
+            <StudySetsProvider>
+              <StudyOptionsProvider> 
+              <TestOptionsContextProvider>
+                  <App />
+              </TestOptionsContextProvider>  
+              </StudyOptionsProvider>
+            </StudySetsProvider>
+          </CreateSetContextProvider>
         </AuthContextProvider>
       </ResetContextProvider> 
     </ErrorContextProvider>

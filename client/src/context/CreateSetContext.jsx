@@ -56,7 +56,7 @@ export const createSetReducer = (state, action) =>{
     case 'DEFAULT_CARDS':
       
       const defaultCards = []
-      for(let i = 1; i <= 1; i++){
+      for(let i = 1; i <= 5; i++){
         defaultCards.push(createStudyCard(i))
       }
 
