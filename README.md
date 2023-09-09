@@ -1,9 +1,9 @@
 # BrainBooster_MERN_STACK
 
-Overview
+## Overview
 BrainBooster is a web application designed to enhance your learning experience. It leverages the MERN (MongoDB, Express.js, React.js, Node.js) stack to provide users with a platform where they can create and manage study sets. The application incorporates user authentication and authorization using JWT (JSON Web Tokens), ensuring secure access to study materials.
 
-Features
+## Features
 User Registration and Authentication: Users can sign up for an account or log in to an existing one, ensuring a personalized experience and data security.
 
 JWT Authorization: BrainBooster employs JSON Web Tokens (JWT) to handle user authorization. This technology ensures that only authenticated users can access their study sets and related functionalities.
