@@ -16,6 +16,10 @@ const Match = () =>{
   const [isWrong, setIsWrong] = useState(false)
   const [correctCounter, setCorrectCounter] = useState(0)
   const [result, setResult] = useState(false)
+  const[timer, setTimer] = useState(0)
+  const[badAttempts, setBadAttempts] = useState(0)
+  const [accuracy, setAccuracy] = useState(null)
+  
 
 
 
@@ -81,12 +85,13 @@ const Match = () =>{
   useEffect(()=>{
 
     if((firstChoice && secondChoice) && firstChoice.show === secondChoice.answer){
-      console.log("HOLY SHIT THEY MATCH")
+      
       setIsCorrect(true)
       setCorrectCounter(prevCount => prevCount + 1)
     }else if((firstChoice && secondChoice) && firstChoice.show !== secondChoice.answer){
-      console.log("YOU DUMB")
+      
       setIsWrong(true)
+      setBadAttempts(prevState => prevState + 1)
 
     }
 
@@ -112,12 +117,10 @@ const Match = () =>{
     }
     
     if(isMatch && (correctCounter === isMatch.length)){
-      setTimeout(()=>{
         setResult(true)
-        setCorrectCounter(0)
-      },500) 
+        setAccuracy((correctCounter/(correctCounter+badAttempts)) * 100)
     }
-
+   
   },[correctCounter,isMatch])
 
  
@@ -129,6 +132,10 @@ const Match = () =>{
       return
     }
     setResult(false)
+    setTimer(0)
+    setCorrectCounter(0)
+    setAccuracy(null)
+    setBadAttempts(0)
     if(cardSelect.cardArr){
       
       setIsMatch(createMatchSet(cardSelect.cardArr))
@@ -136,19 +143,46 @@ const Match = () =>{
 
   }
 
+  useEffect(()=>{
+
+    let interval
+
+    if((!result  && isMatch && !start)){
+        interval = setInterval(() => {
+          setTimer(prevTime => prevTime + 10)
+        }, 10)
+    }else{
+      clearInterval(interval)
+    }
+    return () => clearInterval(interval);
+  },[result,isMatch,!start])
+
   return(
     <div className='matchPage'>
+      <MatchTimer timer={timer} result={result} start={start}/>
       {(result || start) ? (
-         <div className='resultDiv'>
-         <button className='playAgainBtn' onClick={handlePlayAgain} >{start ? 'Start' : 'Play Again?'}</button>
+         <div className={`resultDiv ${result ? 'showResult': ''}`}>
+          {start ? (
+            <>
+              <h3 className='matchTitle'>Matching Game</h3>
+              <p className='matchDescript'>Unleash the power of your memory and cognitive skills as you engage in a captivating and brain-stimulating matching game. This game takes the classic concept of matching pairs and infuses it with the educational value of your very own study set.</p>
+            </>
+          ):(
+            <>
+              <h3 className='timeLabel'>Time</h3>
+              <h3 className='accuracyLabel'>Accuracy</h3>
+              <p className='accuracyP'>{accuracy && accuracy.toFixed(2)}%</p>
+            </>
+          )}
+          <button className='playAgainBtn' onClick={handlePlayAgain} >{start ? 'Start' : 'Play Again?'}</button>
        </div>
       ):(
-        <div className='matchDiv'>
-        {isMatch && isMatch.map((item,index)=>(
-          <MatchCardComponent key={index} info={item} handleSelected={handleSelected} isSelected={(firstChoice && item.show === firstChoice.show) || (secondChoice && item.show === secondChoice.show)} isCorrect={isCorrect} isWrong={isWrong}/>
-        ))}
-      </div>
-     
+          <div className='matchDiv'>
+          {isMatch && isMatch.map((item,index)=>(
+            <MatchCardComponent key={index} info={item} handleSelected={handleSelected} isSelected={(firstChoice && item.show === firstChoice.show) || (secondChoice && item.show === secondChoice.show)} isCorrect={isCorrect} isWrong={isWrong}/>
+          ))}
+        </div>
+       
       )}
     </div>
   )
@@ -176,6 +210,18 @@ const MatchCardComponent = ({info, handleSelected, isSelected, isCorrect, isWron
     </div>
   )
 
+}
+
+const MatchTimer = ({timer, result, start}) =>{
+
+  return(
+    <div className={`timerDiv ${result ? 'centerTime' : ''} ${start ? 'hideMatch': ''}`}>
+      {timer >= 60000 && <span>{("0" + Math.floor((timer / 60000) % 60)).slice(-2)}<span className='timeLbl'> min</span></span>
+      }
+      <span>{("0" + Math.floor((timer / 1000) % 60)).slice(-2)}<span className='timeLbl'> sec</span></span>
+      <span className='millisec'>{("0" + ((timer / 10) % 100)).slice(-2)}<span className='timeLbl'> ms</span></span>
+    </div>
+  )
 }
 
 export default Match
