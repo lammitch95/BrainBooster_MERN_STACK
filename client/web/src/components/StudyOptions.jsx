@@ -29,13 +29,13 @@ const StudyOptions = ({card, handleBack, isMenu}) =>{
         case 'match':
             navigate(`/match/${cardSelect._id}`)
             break
-        case 'word search':
-          console.log('CROSS WORD SEARCH COMING SOON')
+        case 'bingo':
+          console.log('bingo COMING SOON')
        
           break
 
-        case 'cross words':
-          console.log('CROSS WORDS COMING SOON')
+        case 'jeapoardy':
+          console.log('jeapoardy COMING SOON')
           break
 
         default:
@@ -56,8 +56,8 @@ const StudyOptions = ({card, handleBack, isMenu}) =>{
         <button onClick={()=>{handleSelectOptions('flashcards')}} className="optionBtn studyFlashBtn">Flashcards</button>
         <button  onClick={()=>{handleSelectOptions('test')}} className="optionBtn studyExamsBtn">Test</button>
         <button  onClick={()=>{handleSelectOptions('match')}} className="optionBtn studyMatch">Match</button>
-        <button  onClick={()=>{handleSelectOptions('wordsearch')}} className="optionBtn studyWordSearch">Word Search Coming Soon</button>
-        <button  onClick={()=>{handleSelectOptions('cross words')}} className="optionBtn studyCrossWord">Cross Words Coming Soon</button>
+        <button  onClick={()=>{handleSelectOptions('bingo')}} className="optionBtn studyWordSearch">Bingo Coming Soon</button>
+        <button  onClick={()=>{handleSelectOptions('jeapoardy')}} className="optionBtn studyCrossWord">Jeapoardy Coming Soon</button>
         <button onClick={handleBack} className="optionBtn studyBackBtn">Back</button>
       </div>
         <div className='displayDiv'>

@@ -31,6 +31,14 @@ const NavBar = () =>{
   const navigate = useNavigate()
   const {dispatch: cardDispatch, cardSelect} = useStudyOptionsContext()
 
+  useEffect(()=>{
+    
+      setSettingBtn(false)
+      setNotifyBtn(false)
+      setCreateBtn(false)
+    
+  },[])
+
   const handleClick = () =>{
     setSettingBtn(false)
     setNotifyBtn(false)
@@ -141,7 +149,7 @@ const NavBar = () =>{
             )}
           </nav>
         </div>
-        <div className='menu-div'>
+        {location.pathname === '/home' && <div className='menu-div'>
           <div className={`settingMenu ${settingBtn ? 'activeSlide' : 'deactivateSlide'} `}>
             {user && (<div className='user-logout-div'>
                 <div className='user-email'>{user.email}</div>
@@ -155,7 +163,7 @@ const NavBar = () =>{
             <button className={`createItem`}><FontAwesomeIcon className='createItemIcon' icon={faFolderOpen}/><label className='createLabel folder'>Folder</label></button>
           </div>
 
-        </div>
+        </div>}
     </header>
 
 

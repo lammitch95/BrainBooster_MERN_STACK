@@ -8,8 +8,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0 1rem;
   flex-direction: column;
+ 
 }
 
 .matchDiv{
@@ -18,8 +19,8 @@
   grid-gap: 10px;
   height: 25rem;
   width: 100%;
-  justify-content: center;
   margin-top: 2rem;
+  padding: 0 2rem;
  
  
 }
@@ -121,7 +122,6 @@
   margin-top: 5rem;
   font-size: 1.5rem;
   color: white;
-  align-self: flex-end;
   display: flex;
   align-items: end;
   gap: 5px;
@@ -134,35 +134,31 @@
   color: rgb(35, 189, 250);
 }
 
-.centerTime{
-
-  animation: centerTimer 1s;
-  transform: scale(150%) translateX(-27vw) translateY(65px)
-}
-
-@keyframes centerTimer {
-
-  0%{
-    transform: scale(100%) translateX(0) translateY(0);
-
-  }
-
-  100%{
-    transform: scale(150%) translateX(-27vw) translateY(65px);
-  }
+.timerDiv{
+ 
+  margin-top: 5rem;
+  font-size: 1.5rem;
+  color: white;
+  display: flex;
+  align-items: end;
+  gap: 5px;
   
 }
+
+.centerTime{
+  transition: transform 1s;
+  transform: scale(150%)  translateY(65px) rotateZ(360deg); 
+}
+
+
 
 .timeLbl{
   color: rgb(168, 168, 168);
   font-size: .75rem;
 }
 
-@media screen and (max-width:720px) {
-  .centerTime{
-    transform: scale(150%) translateX(-23vw) translateY(65px);
-  }
-}
+
+
 /*******************************/
 
 .timeLabel, .accuracyLabel{
