@@ -39,8 +39,8 @@ mongoose.connect(process.env.MONGO_URI)
       console.log('Connected to databse and Listening port', process.env.PORT)
     })
   })
-  .catch(err =>{
-    console.log(error)
+  .catch(error =>{
+    console.log('Database connection error:', error)
   })
 
 
