@@ -12,8 +12,7 @@ BrainBooster is a web application designed to enhance your learning experience. 
 ### Flashcards Option
 ![flashCardGIF](https://github.com/user-attachments/assets/3b505bfe-1ad3-4bf9-9098-19cddac72009)
 ### Responsive Website View
-![Screenshot 2024-12-17 000501](https://github.com/user-attachments/assets/95aacbe0-89b0-4175-9435-1fc56013f611)
-![Screenshot 2024-12-17 000527](https://github.com/user-attachments/assets/a4f7adcf-0ab0-4601-ab2c-8d3a08df7195)
+![brainboostresponsiveGIF](https://github.com/user-attachments/assets/0001c1e1-2ab6-4e1f-bb4e-1ae93fd1b1d4) 
 
 ## Features
 - **User Registration and Authentication:** Users can sign up for an account or log in to an existing one, ensuring a personalized experience and data security.
