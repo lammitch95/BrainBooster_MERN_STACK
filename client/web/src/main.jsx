@@ -1,3 +1,15 @@
+/*
+  server run:
+  cd/server
+  npm run dev
+
+  client run:
+  cd/client/web  
+  npm run dev
+
+
+  do Ctrl + c to terminate
+*/
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'

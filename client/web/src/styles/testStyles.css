@@ -67,23 +67,32 @@
 
 .choice{
   background-color: #16213E;
-  border: none;
+  border: 2px solid #16213E;
   color: white;
   font-weight: bold;
   font-size: 1rem;
   padding: 2rem 1rem;
-  transition: background-color 0.3s, transform 0.3s ;
+  transition:  transform 0.3s ;
   border-radius: 10px;
 }
 
-.choice:focus{
-  background-color: #21b7fc;
-  border-bottom-color: white;
+.turnGreen{
+  background-color: rgb(13, 215, 13);
+ 
+
 }
 
+.turnRed{
+  background-color: red;
+ 
+
+}
+
+
+
 .choice:hover{
-  background-color: #21b7fc;
-  transform: scale(1.025);
+  border-color: white;
+  
  
 }
 
@@ -267,3 +276,68 @@
 }
 
 /********************************************************************/
+
+.nextQBtn{
+  background-color: #21b7fc;
+  color: white;
+  border-radius: 10px;
+  width: 7rem;
+  height: 3rem;
+  border: none;
+  font-size: .85rem;
+  font-weight: bold;
+  margin: 2rem 0;
+  opacity: 0;
+}
+
+.nextQBtn:hover{
+  transition: transform 0.3s;
+  transform: scale(1.2);
+}
+
+.showNextBtn{
+  transition: opacity 1s 1s;
+  opacity: 1;
+}
+
+.testMessage{
+  width: 100%;
+  height: 6.5rem;
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  color: white;
+  font-size: 1.5rem;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ gap: 1rem;
+ font-weight: bold;
+}
+
+.moveMessage{
+  transition: opacity 0.3s;
+ transform: translateY(0%);
+ opacity: 1;
+}
+
+.revertMessage{
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.correctSymbol{
+  font-size: 1rem;
+  background-color: white;
+  border-radius: 50px;
+  padding: .5rem .55rem;
+  color:rgb(13, 215, 13);
+}
+
+.wrongSymbol{
+  font-size: 2rem;
+}
+
+.selectBorder{
+  border: white 2px solid;
+}

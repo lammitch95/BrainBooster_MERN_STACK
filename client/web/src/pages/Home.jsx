@@ -121,7 +121,7 @@ const Home = () =>{
       )}
       <section className='pageNumDiv'>
         <FontAwesomeIcon onClick={()=>{handlePageTurn('left')}} className='leftArrowHome' icon={faLessThan}/>
-        <label className="pageNum">{pageCount} / {pagesArr.length}</label>
+        <label className="pageNum">{!studySet || studySet.length === 0 ? 0 : pageCount} / {pagesArr.length}</label>
         <FontAwesomeIcon onClick={()=>{handlePageTurn('right')}} className='rightArrowHome' icon={faGreaterThan}/>
       </section>
     </main>

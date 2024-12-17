@@ -9,6 +9,10 @@ import TestOptions from "../components/testOptions"
 import { useStudyOptionsContext } from '../hooks/useStudyOptionsContext'
 import { useTestOptionsContext } from "../hooks/useTestOptionsContext"
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+
 import '../styles/testStyles.css'
 
 
@@ -22,6 +26,8 @@ const Test = () =>{
   const [isResult, setIsResult] = useState(false)
   const [score, setScore] = useState(null)
   const {tF, mC} = useTestOptionsContext()
+  const [nextQuestion, setNextQuestion] = useState(false)
+  const [message,setMessage] = useState(null)
 
 
   useEffect(()=>{
@@ -137,13 +143,19 @@ const Test = () =>{
   const handleChoiceSelected = (choice, answer) =>{
     if(choice === answer){
       setTotalCorrect(prevCount => prevCount + 1)
+      setMessage('Correct')
+    }else{
+      setMessage('Incorrect')
     }
 
     if(testQuestions && qCount < testQuestions.length){
-      setDirection(prevDirection => prevDirection - 100)
-      setQCount(prevCount => prevCount + 1)
+      setNextQuestion(true)
     }else{
-      setIsResult(true)
+      setTimeout(()=>{
+        setMessage(null)
+        setIsResult(true)
+      },1000)
+      
     }
   }
   
@@ -154,7 +166,13 @@ const Test = () =>{
     }
   },[isResult,totalCorrect,testQuestions])
 
+  useEffect(()=>{
+    console.log(message)
+  },[message])
+
   return(
+    <>
+     <TestMessage message={message}/>
     <main className="testPage">
       <TestOptions/>
       {!isResult ? (
@@ -170,6 +188,12 @@ const Test = () =>{
               <div key={index} className="qPages" style={{transform: `translateX(${direction}%)`}} ><TrueAndFalse card={item} handleChoiceSelected={handleChoiceSelected}/></div>
             ))} 
            </section>
+           <button className={`nextQBtn ${nextQuestion ? 'showNextBtn' : '' }`} onClick={()=>{
+            setDirection(prevDirection => prevDirection - 100)
+            setQCount(prevCount => prevCount + 1)
+            setNextQuestion(false)
+            setMessage(null)
+            }}>Next Question</button>
            
         </>
         ) : (
@@ -187,7 +211,16 @@ const Test = () =>{
        
         
     </main>
+    </>
   )
 }
 
+
+const TestMessage = ({message}) => {
+  return(
+    <div className={`testMessage ${!message ? 'revertMessage': 'moveMessage'} ${message === 'Correct'? 'turnGreen' : 'turnRed'}`}>
+      {message}{message === 'Correct' ? <FontAwesomeIcon className="correctSymbol" icon={faCheck}/> : <FontAwesomeIcon className="wrongSymbol" icon={faCircleXmark}/>}
+    </div>
+  )
+}
 export default Test

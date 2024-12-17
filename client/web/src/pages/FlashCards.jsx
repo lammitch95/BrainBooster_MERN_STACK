@@ -5,7 +5,6 @@ import {faLessThan,faGreaterThan} from '@fortawesome/free-solid-svg-icons'
 
 
 import { useEffect, useState } from "react"
-import { useNavigate} from 'react-router-dom'
 import { useStudyOptionsContext } from '../hooks/useStudyOptionsContext'
 
 const FlashCards = () =>{
@@ -14,9 +13,10 @@ const FlashCards = () =>{
   const [direction, setDirection] =useState(0)
 
   const {cardSelect} = useStudyOptionsContext()
-  const navigate = useNavigate()
+  
 
   const handlePageTurn = (direction) =>{
+    
     switch(direction){
       case 'right':
         if(pageCount < cardSelect.cardArr.length){

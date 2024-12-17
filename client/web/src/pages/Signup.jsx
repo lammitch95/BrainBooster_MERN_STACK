@@ -32,7 +32,7 @@ const Signup = () =>{
           <label className="login-label">Password</label>
         </div>
         <input className='signin-input' type="password" onChange={(e) => setPassword(e.target.value)} value={password}/>
-        <button className='submit-btn' disabled={isLoading}>Log In</button>
+        <button className='submit-btn' disabled={isLoading}>Sign up</button>
       
       </form>
     </div>
