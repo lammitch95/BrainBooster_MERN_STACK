@@ -29,13 +29,14 @@ function App() {
   const{create} = useCreateSetContext()
   const{cardSelect,editStatus} = useStudyOptionsContext()
   const defaultPath = user ? '/home' : '/login'
+ 
   
   return(
     
     <div className='App'>
       <BrowserRouter>
           <ErrorMessage/>
-          <NavBar/>
+           <NavBar/>
           <div className='pages'>
             <Routes>
               <Route path="/" element={<Navigate to={defaultPath} />}/>

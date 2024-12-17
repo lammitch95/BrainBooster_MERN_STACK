@@ -26,7 +26,7 @@ const Match = () =>{
   useEffect(()=>{
 
     if(cardSelect && !start){
-      setIsMatch(createMatchSet(cardSelect.cardArr))
+      setIsMatch(shuffle(createMatchSet(cardSelect.cardArr)))
       setStart(false)
     }
 
@@ -35,6 +35,20 @@ const Match = () =>{
   useEffect(()=>{
     console.log('WHERE IS THE MATCH: ', isMatch)
   },[isMatch])
+
+  const shuffle = (array) =>{
+    const shuffledArr = [...array]
+    for(let i = shuffledArr.length-1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1))
+
+      const temp = shuffledArr[i]
+      shuffledArr[i] = shuffledArr[j]
+      shuffledArr[j] = temp
+    }
+
+    return shuffledArr
+
+  }
 
   const createMatchSet = (array) => {
 
@@ -138,7 +152,7 @@ const Match = () =>{
     setBadAttempts(0)
     if(cardSelect.cardArr){
       
-      setIsMatch(createMatchSet(cardSelect.cardArr))
+      setIsMatch(shuffle(createMatchSet(cardSelect.cardArr)))
     }
 
   }
