@@ -11,9 +11,9 @@ export async function login(driver, email, password) {
     await passwordField.sendKeys(password);
     await loginButton.click();
 
-    await driver.wait(until.elementIsVisible(errorMessage), 2000);
-    
-    
+    //await driver.wait(until.elementIsVisible(errorMessage), 2000);
+    await driver.wait(until.urlContains("home"), 5000); 
+
     const resultMessage = await errorMessage.getText();
 
     return resultMessage; 

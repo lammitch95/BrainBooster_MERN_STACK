@@ -2,7 +2,7 @@ import assert from 'assert';
 import { login } from './utils/LoginUtils.js';
 import BaseTest from './BaseTest.js';
 
-class LoginTest extends BaseTest{
+export default class LoginTest extends BaseTest{
     constructor(){
         super();
     }
@@ -16,6 +16,7 @@ class LoginTest extends BaseTest{
             
             let testEmail = "lammitch420@gmail.com"; //valid emails
             let testPassword = "03272008Mitch!"; //valid password
+
             let incorrectPassword = "1234ABC!";//invalid Password
          
             const resultMessage = await login(this.driver, testEmail, incorrectPassword);
@@ -30,7 +31,9 @@ class LoginTest extends BaseTest{
     }
 }
 
-const test = new LoginTest();
-test.run();
+if (import.meta.url === new URL(import.meta.url).toString()) {
+    const test = new LoginTest();
+    test.run();
+}
 
 
